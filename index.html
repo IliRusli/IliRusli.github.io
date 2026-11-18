@@ -1,0 +1,362 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ili Rusli · Software Engineer</title>
+<meta name="description" content="Ili Rusli, full-stack software engineer in Kuala Lumpur building legal intake and matter management at Checkbox.ai">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #fbfaf7; --surface: #ffffff; --text: #1d1b19; --muted: #6b6560;
+  --line: #e7e2da; --accent: #c2410c; --accent-soft: #fff1e8; --chip: #f3efe8;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #141312; --surface: #1c1a18; --text: #ece8e2; --muted: #a29b92;
+    --line: #2e2b28; --accent: #fb923c; --accent-soft: #2a1d14; --chip: #26231f;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #141312; --surface: #1c1a18; --text: #ece8e2; --muted: #a29b92;
+  --line: #2e2b28; --accent: #fb923c; --accent-soft: #2a1d14; --chip: #26231f;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0; background: var(--bg); color: var(--text);
+  font: 16px/1.65 Inter, system-ui, -apple-system, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+.wrap { max-width: 880px; margin: 0 auto; padding: 0 16px; }
+nav {
+  position: sticky; top: 0; z-index: 10; background: color-mix(in srgb, var(--bg) 88%, transparent);
+  backdrop-filter: blur(8px); border-bottom: 1px solid var(--line);
+}
+nav .wrap { display: flex; align-items: center; justify-content: space-between; height: 56px; }
+nav .logo { font-weight: 700; color: var(--text); }
+nav ul { display: flex; gap: 20px; list-style: none; margin: 0; padding: 0; font-size: 14px; }
+nav ul a { color: var(--muted); }
+nav ul a:hover { color: var(--text); text-decoration: none; }
+#theme { background: none; border: 1px solid var(--line); color: var(--muted); border-radius: 8px; padding: 4px 8px; cursor: pointer; font: inherit; font-size: 13px; }
+@media (max-width: 600px) { nav ul { gap: 12px; } nav ul li.hide-sm { display: none; } }
+
+header.hero { padding: 88px 0 56px; }
+.eyebrow { font-family: "JetBrains Mono", monospace; font-size: 13px; color: var(--accent); letter-spacing: .02em; }
+h1 { font-size: clamp(36px, 7vw, 56px); line-height: 1.08; margin: 12px 0 20px; letter-spacing: -0.03em; }
+.lede { font-size: 19px; color: var(--muted); max-width: 640px; margin: 0 0 28px; }
+.links { display: flex; flex-wrap: wrap; gap: 10px; }
+.btn {
+  display: inline-flex; align-items: center; gap: 6px; padding: 9px 16px; border-radius: 10px;
+  border: 1px solid var(--line); background: var(--surface); color: var(--text); font-weight: 500; font-size: 14px;
+}
+.btn.primary { background: var(--accent); border-color: var(--accent); color: #fff; }
+.btn:hover { text-decoration: none; border-color: var(--accent); }
+
+.stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin: 8px 0 0; }
+.stat { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 18px; }
+.stat b { display: block; font-size: 28px; letter-spacing: -0.02em; }
+.stat span { color: var(--muted); font-size: 13px; }
+@media (max-width: 680px) { .stats { grid-template-columns: repeat(2, 1fr); } }
+
+section { padding: 64px 0 8px; }
+h2 { font-size: 26px; letter-spacing: -0.02em; margin: 0 0 6px; }
+.sub { color: var(--muted); margin: 0 0 28px; }
+
+.featured { display: grid; gap: 14px; }
+.card {
+  background: var(--surface); border: 1px solid var(--line); border-radius: 16px; padding: 22px;
+}
+.card h3 { margin: 0 0 6px; font-size: 18px; }
+.card p { margin: 0 0 12px; color: var(--muted); }
+.card ul { margin: 0 0 12px; padding-left: 18px; color: var(--muted); }
+.card .meta { font-family: "JetBrains Mono", monospace; font-size: 12px; color: var(--accent); margin-bottom: 6px; }
+.tags { display: flex; flex-wrap: wrap; gap: 6px; }
+.tag { background: var(--chip); color: var(--muted); font-size: 12px; padding: 3px 9px; border-radius: 999px; }
+
+.grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; }
+@media (max-width: 680px) { .grid { grid-template-columns: 1fr; } }
+.grid .card { display: flex; flex-direction: column; }
+.grid .card .tags { margin-top: auto; }
+.card .actions { display: flex; gap: 14px; font-size: 14px; margin-bottom: 12px; }
+
+.timeline { position: relative; margin-left: 8px; border-left: 2px solid var(--line); }
+.tl { position: relative; padding: 0 0 30px 26px; }
+.tl::before {
+  content: ""; position: absolute; left: -7px; top: 6px; width: 12px; height: 12px;
+  border-radius: 50%; background: var(--bg); border: 2px solid var(--accent);
+}
+.tl.now::before { background: var(--accent); }
+.tl .yr { font-family: "JetBrains Mono", monospace; font-size: 13px; color: var(--accent); }
+.tl h3 { margin: 2px 0 4px; font-size: 17px; }
+.tl p { margin: 0 0 8px; color: var(--muted); }
+
+.skills { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+@media (max-width: 680px) { .skills { grid-template-columns: 1fr; } }
+.skills h3 { font-size: 14px; margin: 0 0 10px; text-transform: uppercase; letter-spacing: .06em; color: var(--muted); }
+
+footer { padding: 72px 0 48px; color: var(--muted); font-size: 14px; }
+footer .card { text-align: center; padding: 36px 22px; }
+footer h2 { color: var(--text); }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <a class="logo" href="#top">ili.rusli</a>
+    <ul>
+      <li><a href="#work">Work</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li class="hide-sm"><a href="#journey">Journey</a></li>
+      <li><button id="theme" aria-label="Toggle colour theme">◐</button></li>
+    </ul>
+  </div>
+</nav>
+
+<div class="wrap" id="top">
+  <header class="hero">
+    <div class="eyebrow">Full-stack software engineer · Kuala Lumpur, Malaysia</div>
+    <h1>Hi, I'm Ili. I build software that helps legal teams move faster</h1>
+    <p class="lede">
+      Ten years of shipping web and mobile apps, from React Native side projects to a production SaaS
+      platform. Today I work on legal intake and matter management at Checkbox.ai, and I spend a lot of
+      my spare cycles teaching AI agents to take the busywork off my plate
+    </p>
+    <div class="links">
+      <a class="btn primary" href="#work">See my work</a>
+      <a class="btn" href="https://github.com/IliRusli">GitHub</a>
+      <a class="btn" href="https://www.linkedin.com/in/ilifilzarusli">LinkedIn</a>
+      <a class="btn" href="mailto:ilifilzarusli@gmail.com">Email</a>
+    </div>
+  </header>
+
+  <div class="stats">
+    <div class="stat"><b>10+</b><span>years writing code on GitHub</span></div>
+    <div class="stat"><b>377</b><span>PRs merged at Checkbox.ai</span></div>
+    <div class="stat"><b>500+</b><span>teammate PRs reviewed</span></div>
+    <div class="stat"><b>30+</b><span>public repos and experiments</span></div>
+  </div>
+
+  <section id="work">
+    <h2>Current work</h2>
+    <p class="sub">Checkbox.ai · The Legal Eagles squad (Intake &amp; Matter Management) · 2024 to now</p>
+
+    <div class="featured">
+      <div class="card">
+        <div class="meta">Product</div>
+        <h3>Legal intake and matter management platform</h3>
+        <p>
+          Checkbox builds AI and no-code tools for in-house legal teams. My squad owns the part of the
+          product where legal requests arrive and get worked: intake from email, Slack, Ironclad and web
+          forms, customisable intake forms, triage and prioritisation, matter storage and a reporting
+          dashboard
+        </p>
+        <div class="tags"><span class="tag">React</span><span class="tag">Node.js</span><span class="tag">PostgreSQL</span><span class="tag">AWS / EKS</span><span class="tag">BullMQ + Redis</span><span class="tag">Unleash</span></div>
+      </div>
+
+      <div class="grid">
+        <div class="card">
+          <div class="meta">Feature work</div>
+          <h3>Unified message system</h3>
+          <p>One conversation thread per matter, pulling email and Slack replies into a single view so legal teams stop hunting across tools for context</p>
+          <div class="tags"><span class="tag">Messaging</span><span class="tag">Slack</span><span class="tag">Email</span></div>
+        </div>
+        <div class="card">
+          <div class="meta">Feature work</div>
+          <h3>Global Search ingestion</h3>
+          <p>Building the ingestion pipeline (transactional outbox pattern) that feeds matters, messages and notes into a cross-product search index</p>
+          <div class="tags"><span class="tag">Outbox pattern</span><span class="tag">Search</span><span class="tag">Event-driven</span></div>
+        </div>
+        <div class="card">
+          <div class="meta">Reliability</div>
+          <h3>Sev1 production incident lead</h3>
+          <p>Traced a crash-looping service to memory pressure during Slack event processing, shipped a stabilising fix and wrote an RCA that both engineers and Customer Success could follow</p>
+          <div class="tags"><span class="tag">Datadog</span><span class="tag">Kubernetes</span><span class="tag">RCA</span></div>
+        </div>
+        <div class="card">
+          <div class="meta">Team</div>
+          <h3>Slack integration SME and reviewer</h3>
+          <p>Go-to person for Slack integration issues, regular code reviewer for a nine-dev squad, and a voice for customer feedback in planning</p>
+          <div class="tags"><span class="tag">Code review</span><span class="tag">Customer insight</span><span class="tag">Mentoring</span></div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="meta">AI engineering · 2026</div>
+        <h3>Lily: my AI executive assistant and agent fleet</h3>
+        <p>
+          A personal "second brain" built on Claude Code that wires together Jira, GitHub, Datadog,
+          PagerDuty, Teams and Notion. It runs the repetitive parts of my week so I can spend more
+          time on product work
+        </p>
+        <ul>
+          <li>Automated PR review that fans out one agent per open PR, verifies every finding against the code, then posts only after I approve</li>
+          <li>Morning briefing that reads my calendar and unreplied messages and suggests what to focus on</li>
+          <li>Weekly tech and legal-tech news roundup for the team</li>
+          <li>A file-based memory and decision log, so the assistant learns how I like to work</li>
+        </ul>
+        <div class="tags"><span class="tag">Claude Code</span><span class="tag">MCP</span><span class="tag">Multi-agent</span><span class="tag">Automation</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="projects">
+    <h2>Side projects</h2>
+    <p class="sub">Things I built to learn something new</p>
+    <div class="grid">
+      <div class="card">
+        <div class="meta">2021 · Full stack</div>
+        <h3>Slick's Slices</h3>
+        <p>A pizza shop site with a headless CMS so the owner can edit the menu, toppings and staff. Includes filtering by topping and an order checkout</p>
+        <div class="actions"><a href="https://vigilant-mcclintock-66f75f.netlify.app/">Live demo</a><a href="https://github.com/IliRusli/master-gatsby">Code</a></div>
+        <div class="tags"><span class="tag">Gatsby</span><span class="tag">Sanity</span><span class="tag">GraphQL</span><span class="tag">Netlify</span></div>
+      </div>
+      <div class="card">
+        <div class="meta">2021 · Web3</div>
+        <h3>Wave Portal</h3>
+        <p>Connect a wallet, send a wave and a message on-chain. Smart contract deployed to a testnet, with random prize payouts and anti-spam cooldowns</p>
+        <div class="actions"><a href="https://github.com/IliRusli/web3-solidity">Code</a></div>
+        <div class="tags"><span class="tag">Solidity</span><span class="tag">Hardhat</span><span class="tag">React</span><span class="tag">Ethereum</span></div>
+      </div>
+      <div class="card">
+        <div class="meta">2021 · Mobile</div>
+        <h3>React Native chat app</h3>
+        <p>A chat client that sends and receives text, images and PDFs, with Redux state and a polished iOS UI</p>
+        <div class="actions"><a href="https://github.com/IliRusli/react-native-chat-app">Code</a></div>
+        <div class="tags"><span class="tag">React Native</span><span class="tag">Redux</span><span class="tag">TypeScript</span></div>
+      </div>
+      <div class="card">
+        <div class="meta">2022 · Full stack</div>
+        <h3>Task manager</h3>
+        <p>A single-page app to create, list and edit tasks, with a React front end and an Express API</p>
+        <div class="actions"><a href="https://github.com/IliRusli/task-manager">Code</a></div>
+        <div class="tags"><span class="tag">React</span><span class="tag">Node.js</span><span class="tag">Express</span><span class="tag">TypeScript</span></div>
+      </div>
+      <div class="card">
+        <div class="meta">2020 · Mobile</div>
+        <h3>Dynamic form generator</h3>
+        <p>A proof of concept that renders React Native forms from a JSON schema, an early take on the configurable intake forms I work on today</p>
+        <div class="actions"><a href="https://github.com/IliRusli/react-native-dynamic-form-generator-poc">Code</a></div>
+        <div class="tags"><span class="tag">React Native</span><span class="tag">TypeScript</span></div>
+      </div>
+      <div class="card">
+        <div class="meta">2023 · AI</div>
+        <h3>Davinci chatbot</h3>
+        <p>An early experiment with the OpenAI API, building a conversational chatbot before LLM tooling went mainstream</p>
+        <div class="actions"><a href="https://github.com/IliRusli/davinci-chatbot">Code</a></div>
+        <div class="tags"><span class="tag">JavaScript</span><span class="tag">OpenAI API</span></div>
+      </div>
+      <div class="card">
+        <div class="meta">2024 · AR</div>
+        <h3>AR menu viewer</h3>
+        <p>A lightweight web experiment that previews menu items in augmented reality right from the browser</p>
+        <div class="actions"><a href="https://github.com/IliRusli/simple_ar_menu_viewer">Code</a></div>
+        <div class="tags"><span class="tag">HTML</span><span class="tag">WebAR</span></div>
+      </div>
+      <div class="card">
+        <div class="meta">2020 to 2021 · Learning</div>
+        <h3>Full Stack Open and course work</h3>
+        <p>Completed the University of Helsinki Full Stack Open course, plus courses on CSS Grid, vanilla JS and Node</p>
+        <div class="actions"><a href="https://github.com/IliRusli/fullstackopen">Code</a></div>
+        <div class="tags"><span class="tag">React</span><span class="tag">Node.js</span><span class="tag">MongoDB</span><span class="tag">GraphQL</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="journey">
+    <h2>The journey so far</h2>
+    <p class="sub">A decade on GitHub, one year at a time</p>
+    <div class="timeline">
+      <div class="tl now">
+        <div class="yr">2026</div>
+        <h3>Orchestrating AI agents</h3>
+        <p>Built Lily, a multi-agent assistant for PR review, briefings and incident triage. Led a Sev1 investigation and started the Global Search ingestion work</p>
+      </div>
+      <div class="tl">
+        <div class="yr">2025</div>
+        <h3>Shipping at scale</h3>
+        <p>171 PRs merged in one year on the matter management platform, including the unified message system and Slack integration</p>
+      </div>
+      <div class="tl">
+        <div class="yr">2024</div>
+        <h3>Joined Checkbox.ai</h3>
+        <p>Moved into legal tech as a full-stack engineer on intake and matter management. Also tinkered with WebAR</p>
+      </div>
+      <div class="tl">
+        <div class="yr">2023</div>
+        <h3>First steps with LLMs and AWS</h3>
+        <p>Built a chatbot on the OpenAI API and set up an AWS playground for cloud experiments</p>
+      </div>
+      <div class="tl">
+        <div class="yr">2021 to 2022</div>
+        <h3>Going full stack</h3>
+        <p>Gatsby + Sanity storefront, an interactive map app, a Solidity dApp and a React + Express task manager</p>
+      </div>
+      <div class="tl">
+        <div class="yr">2019 to 2020</div>
+        <h3>Mobile engineering</h3>
+        <p>Native Android in Kotlin, React Native home-screen widgets, a JSON-driven form generator and a production IoT controller app for a client</p>
+      </div>
+      <div class="tl">
+        <div class="yr">2017</div>
+        <h3>React Native and PHP</h3>
+        <p>First batch of React Native apps (auth, to-do, CodePush) and back-end work in Laravel and Magento</p>
+      </div>
+      <div class="tl">
+        <div class="yr">2015</div>
+        <h3>Hello, world</h3>
+        <p>Joined GitHub, built a hackathon project at OSU Hackathon 2015 and shipped my first personal web page</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="skills">
+    <h2>Toolbox</h2>
+    <p class="sub">What I reach for most</p>
+    <div class="skills">
+      <div class="card">
+        <h3>Front end</h3>
+        <div class="tags"><span class="tag">React</span><span class="tag">TypeScript</span><span class="tag">React Native</span><span class="tag">Gatsby</span><span class="tag">Redux</span><span class="tag">CSS</span></div>
+      </div>
+      <div class="card">
+        <h3>Back end &amp; infra</h3>
+        <div class="tags"><span class="tag">Node.js</span><span class="tag">PostgreSQL</span><span class="tag">Redis</span><span class="tag">AWS</span><span class="tag">Kubernetes</span><span class="tag">GitHub Actions</span><span class="tag">Datadog</span></div>
+      </div>
+      <div class="card">
+        <h3>AI &amp; workflow</h3>
+        <div class="tags"><span class="tag">Claude Code</span><span class="tag">MCP</span><span class="tag">Agent orchestration</span><span class="tag">Prompt design</span><span class="tag">Jira</span><span class="tag">Figma</span></div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="card">
+      <h2>Let's talk</h2>
+      <p>Always happy to chat about legal tech, developer productivity or putting AI agents to work</p>
+      <div class="links" style="justify-content:center">
+        <a class="btn primary" href="mailto:ilifilzarusli@gmail.com">Say hello</a>
+        <a class="btn" href="https://www.linkedin.com/in/ilifilzarusli">LinkedIn</a>
+        <a class="btn" href="https://github.com/IliRusli">GitHub</a>
+      </div>
+    </div>
+    <p style="text-align:center;margin-top:28px">© <span id="y"></span> Ili Rusli</p>
+  </footer>
+</div>
+
+<script>
+  document.getElementById('y').textContent = new Date().getFullYear();
+  const root = document.documentElement, btn = document.getElementById('theme');
+  try { const t = localStorage.getItem('theme'); if (t) root.dataset.theme = t; } catch (e) {}
+  btn.addEventListener('click', () => {
+    const dark = root.dataset.theme ? root.dataset.theme === 'dark' : matchMedia('(prefers-color-scheme: dark)').matches;
+    root.dataset.theme = dark ? 'light' : 'dark';
+    try { localStorage.setItem('theme', root.dataset.theme); } catch (e) {}
+  });
+</script>
+</body>
+</html>
