@@ -55,6 +55,9 @@ h1 { font-size: clamp(36px, 7vw, 56px); line-height: 1.08; margin: 12px 0 20px; 
   border: 1px solid var(--line); background: var(--surface); color: var(--text); font-weight: 500; font-size: 14px;
 }
 .btn.primary { background: var(--accent); border-color: var(--accent); color: #fff; }
+button.btn { cursor: pointer; font-family: inherit; }
+#toast { position: fixed; left: 50%; bottom: 24px; transform: translate(-50%, 20px); opacity: 0; transition: .2s; background: var(--text); color: var(--bg); padding: 10px 16px; border-radius: 10px; font-size: 14px; pointer-events: none; max-width: calc(100% - 32px); }
+#toast.show { opacity: 1; transform: translate(-50%, 0); }
 .btn:hover { text-decoration: none; border-color: var(--accent); }
 
 .stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin: 8px 0 0; }
@@ -131,7 +134,7 @@ footer h2 { color: var(--text); }
       <a class="btn primary" href="#work">See my work</a>
       <a class="btn" href="https://github.com/IliRusli">GitHub</a>
       <a class="btn" href="https://www.linkedin.com/in/ilifilzarusli">LinkedIn</a>
-      <a class="btn" href="mailto:ilifilzarusli@gmail.com">Email</a>
+      <button class="btn copy-email" type="button">Email</button>
     </div>
   </header>
 
@@ -144,7 +147,7 @@ footer h2 { color: var(--text); }
 
   <section id="work">
     <h2>Current work</h2>
-    <p class="sub">Checkbox.ai · The Legal Eagles squad (Intake &amp; Matter Management) · 2024 to now</p>
+    <p class="sub">Checkbox.ai · The Legal Eagles squad (Intake &amp; Matter Management) · 2023 to now</p>
 
     <div class="featured">
       <div class="card">
@@ -284,13 +287,13 @@ footer h2 { color: var(--text); }
       </div>
       <div class="tl">
         <div class="yr">2024</div>
-        <h3>Joined Checkbox.ai</h3>
-        <p>Moved into legal tech as a full-stack engineer on intake and matter management. Also tinkered with WebAR</p>
+        <h3>Deeper into the platform</h3>
+        <p>Took on more of the matter management platform at Checkbox.ai, and tinkered with WebAR on the side</p>
       </div>
       <div class="tl">
         <div class="yr">2023</div>
-        <h3>First steps with LLMs and AWS</h3>
-        <p>Built a chatbot on the OpenAI API and set up an AWS playground for cloud experiments</p>
+        <h3>Joined Checkbox.ai</h3>
+        <p>Moved into legal tech as a full-stack engineer on intake and matter management. On the side, built a chatbot on the OpenAI API and set up an AWS playground</p>
       </div>
       <div class="tl">
         <div class="yr">2021 to 2022</div>
@@ -339,16 +342,24 @@ footer h2 { color: var(--text); }
       <h2>Let's talk</h2>
       <p>Always happy to chat about legal tech, developer productivity or putting AI agents to work</p>
       <div class="links" style="justify-content:center">
-        <a class="btn primary" href="mailto:ilifilzarusli@gmail.com">Say hello</a>
+        <button class="btn primary copy-email" type="button">Say hello</button>
         <a class="btn" href="https://www.linkedin.com/in/ilifilzarusli">LinkedIn</a>
         <a class="btn" href="https://github.com/IliRusli">GitHub</a>
       </div>
+      <p style="margin:18px 0 0;font-family:'JetBrains Mono',monospace;font-size:14px"><a href="mailto:ilifilzarusli@gmail.com">ilifilzarusli@gmail.com</a></p>
     </div>
     <p style="text-align:center;margin-top:28px">© <span id="y"></span> Ili Rusli</p>
   </footer>
 </div>
 
+<div id="toast" role="status" aria-live="polite"></div>
 <script>
+  const EMAIL = 'ilifilzarusli@gmail.com', toast = document.getElementById('toast');
+  function showToast(msg) { toast.textContent = msg; toast.classList.add('show'); clearTimeout(showToast.t); showToast.t = setTimeout(() => toast.classList.remove('show'), 2600); }
+  document.querySelectorAll('.copy-email').forEach(b => b.addEventListener('click', async () => {
+    try { await navigator.clipboard.writeText(EMAIL); showToast('Copied ' + EMAIL); }
+    catch (e) { showToast(EMAIL); }
+  }));
   document.getElementById('y').textContent = new Date().getFullYear();
   const root = document.documentElement, btn = document.getElementById('theme');
   try { const t = localStorage.getItem('theme'); if (t) root.dataset.theme = t; } catch (e) {}
