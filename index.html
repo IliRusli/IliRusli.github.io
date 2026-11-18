@@ -3,468 +3,377 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Ili Rusli · Applied AI Engineer</title>
+<title>Ili Rusli</title>
 <meta name="description" content="Ili Rusli, full-stack engineer in Kuala Lumpur building applied AI workflows that make work easier for teams and for everyday life">
-<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>✦</text></svg>">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='40' fill='%23c2185b'/></svg>">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@500;600;700;800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Instrument+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
 :root {
-  --bg: #fff8fb; --surface: #ffffff; --text: #2b1b2e; --muted: #7a6680;
-  --line: #f5d9e8; --accent: #db2777; --accent-2: #8b5cf6; --accent-soft: #fde7f1;
-  --chip: #fcecf4; --chip-text: #9d2462; --glow-1: #fbcfe8; --glow-2: #ddd6fe; --glow-3: #fde68a;
-  --shadow: 0 10px 30px -12px rgba(219, 39, 119, .25);
+  --bg: #fbf4f0; --text: #2a1f22; --muted: #7d6a6e; --faint: #b8a5a8;
+  --rule: #ead8d2; --accent: #c2185b; --mark: #f8c8d8;
 }
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
-    --bg: #160d1a; --surface: #21142a; --text: #f8eaf3; --muted: #bfa6c4;
-    --line: #3a2443; --accent: #f472b6; --accent-2: #a78bfa; --accent-soft: #2e1730;
-    --chip: #321c38; --chip-text: #f9a8d4; --glow-1: #6b1f4b; --glow-2: #3b2a6e; --glow-3: #4a3216;
-    --shadow: 0 10px 30px -12px rgba(244, 114, 182, .3);
+    --bg: #1b1416; --text: #f3e6e8; --muted: #b19ca1; --faint: #6f5a5f;
+    --rule: #3a2b2f; --accent: #f06292; --mark: #6a2240;
   }
 }
 :root[data-theme="dark"] {
-  --bg: #160d1a; --surface: #21142a; --text: #f8eaf3; --muted: #bfa6c4;
-  --line: #3a2443; --accent: #f472b6; --accent-2: #a78bfa; --accent-soft: #2e1730;
-  --chip: #321c38; --chip-text: #f9a8d4; --glow-1: #6b1f4b; --glow-2: #3b2a6e; --glow-3: #4a3216;
-  --shadow: 0 10px 30px -12px rgba(244, 114, 182, .3);
+  --bg: #1b1416; --text: #f3e6e8; --muted: #b19ca1; --faint: #6f5a5f;
+  --rule: #3a2b2f; --accent: #f06292; --mark: #6a2240;
 }
 * { box-sizing: border-box; }
 html { scroll-behavior: smooth; }
 body {
-  margin: 0; background: var(--bg); color: var(--text); overflow-x: hidden;
-  font: 16px/1.65 Inter, system-ui, -apple-system, sans-serif; -webkit-font-smoothing: antialiased;
+  margin: 0; background: var(--bg); color: var(--text);
+  font: 17px/1.6 "Instrument Sans", system-ui, sans-serif; -webkit-font-smoothing: antialiased;
 }
-body::before {
-  content: ""; position: fixed; inset: -20vh -20vw auto auto; width: 70vw; height: 70vw; z-index: -1;
-  background: radial-gradient(circle at 30% 30%, var(--glow-1), transparent 60%),
-              radial-gradient(circle at 70% 60%, var(--glow-2), transparent 55%);
-  filter: blur(40px); opacity: .7; pointer-events: none;
+::selection { background: var(--mark); }
+a { color: inherit; text-decoration: underline; text-decoration-color: var(--accent); text-underline-offset: 3px; text-decoration-thickness: 1.5px; }
+a:hover { color: var(--accent); }
+.wrap { max-width: 1040px; margin: 0 auto; padding: 0 16px; }
+@media (min-width: 720px) { .wrap { padding: 0 40px; } }
+.serif { font-family: "Instrument Serif", Georgia, serif; font-weight: 400; }
+.mono { font-family: "IBM Plex Mono", monospace; font-size: 13px; letter-spacing: .01em; }
+mark { background: linear-gradient(104deg, transparent .5%, var(--mark) 2%, var(--mark) 97%, transparent 99%); color: inherit; padding: 0 .12em; border-radius: 3px 8px 4px 9px; }
+
+/* top bar */
+.top { display: flex; justify-content: space-between; align-items: baseline; padding: 28px 0; border-bottom: 1px solid var(--rule); gap: 16px; flex-wrap: wrap; }
+.top .name { font-family: "Instrument Serif", serif; font-size: 24px; text-decoration: none; }
+.top nav { display: flex; gap: 22px; flex-wrap: wrap; }
+.top nav a { text-decoration: none; color: var(--muted); font-size: 15px; }
+.top nav a:hover { color: var(--accent); }
+#theme { background: none; border: 0; color: var(--muted); cursor: pointer; font: inherit; font-size: 15px; padding: 0; }
+#theme:hover { color: var(--accent); }
+
+/* hero */
+.hero { display: grid; grid-template-columns: 1fr; gap: 40px; padding: 72px 0 80px; border-bottom: 1px solid var(--rule); }
+@media (min-width: 860px) { .hero { grid-template-columns: 1fr 240px; gap: 64px; align-items: end; } }
+.hero h1 { font-family: "Instrument Serif", serif; font-weight: 400; font-size: clamp(44px, 8vw, 92px); line-height: .98; letter-spacing: -0.02em; margin: 0 0 32px; }
+.hero h1 em { color: var(--accent); }
+.hero .intro { max-width: 600px; font-size: 19px; }
+.hero .intro p { margin: 0 0 16px; }
+.hero aside { font-size: 15px; color: var(--muted); border-left: 2px solid var(--accent); padding-left: 18px; }
+.hero aside dt { font-family: "IBM Plex Mono", monospace; font-size: 12px; color: var(--faint); text-transform: lowercase; margin-top: 14px; }
+.hero aside dt:first-child { margin-top: 0; }
+.hero aside dd { margin: 2px 0 0; color: var(--text); }
+
+/* sections */
+section { padding: 72px 0; border-bottom: 1px solid var(--rule); }
+.sec-head { display: grid; grid-template-columns: 1fr; gap: 8px; margin-bottom: 40px; }
+@media (min-width: 860px) { .sec-head { grid-template-columns: 200px 1fr; gap: 40px; } }
+.sec-head .num { color: var(--accent); padding-top: 14px; }
+.sec-head h2 { font-family: "Instrument Serif", serif; font-weight: 400; font-size: clamp(34px, 5vw, 52px); line-height: 1.05; margin: 0 0 10px; letter-spacing: -0.01em; }
+.sec-head p { margin: 0; color: var(--muted); max-width: 560px; }
+
+/* project rows */
+.row { display: grid; grid-template-columns: 1fr; gap: 6px 40px; padding: 30px 0; border-top: 1px solid var(--rule); }
+.row:first-of-type { border-top: 0; padding-top: 0; }
+@media (min-width: 860px) { .row { grid-template-columns: 200px 1fr; } }
+.row .when { color: var(--muted); padding-top: 6px; }
+.row .when span { display: block; color: var(--faint); }
+.row h3 { font-family: "Instrument Serif", serif; font-weight: 400; font-size: 30px; line-height: 1.15; margin: 0 0 8px; }
+.row p { margin: 0 0 12px; max-width: 640px; }
+.row ol { margin: 4px 0 14px; padding-left: 22px; max-width: 640px; }
+.row ol li { margin-bottom: 6px; padding-left: 4px; }
+.row ol li::marker { font-family: "IBM Plex Mono", monospace; font-size: 13px; color: var(--accent); }
+.row .result { font-family: "Instrument Serif", serif; font-style: italic; font-size: 21px; line-height: 1.35; color: var(--accent); margin: 4px 0 14px; max-width: 600px; }
+.row .stack { color: var(--muted); }
+.row .links-inline { margin-top: 6px; font-size: 15px; display: flex; gap: 18px; }
+
+/* principles */
+.principles { list-style: none; padding: 0; margin: 0; counter-reset: p; display: grid; gap: 28px; }
+@media (min-width: 860px) { .principles { margin-left: 240px; } }
+.principles li { counter-increment: p; display: grid; grid-template-columns: 48px 1fr; max-width: 640px; }
+.principles li::before { content: counter(p, lower-roman) "."; font-family: "Instrument Serif", serif; font-style: italic; font-size: 26px; color: var(--accent); line-height: 1.1; }
+.principles b { font-weight: 600; }
+
+/* index table */
+.index { width: 100%; border-collapse: collapse; }
+.index td { padding: 14px 0; border-top: 1px solid var(--rule); vertical-align: baseline; }
+.index tr:first-child td { border-top: 0; }
+.index td.y { width: 200px; color: var(--muted); }
+.index td.n { font-family: "Instrument Serif", serif; font-size: 22px; padding-right: 24px; white-space: nowrap; }
+.index td.d { color: var(--muted); font-size: 16px; }
+@media (max-width: 720px) {
+  .index tr { display: block; padding: 14px 0; border-top: 1px solid var(--rule); }
+  .index tr:first-child { border-top: 0; }
+  .index td { display: block; border: 0; padding: 0; width: auto !important; white-space: normal !important; }
 }
-body::after {
-  content: ""; position: fixed; left: -25vw; bottom: -30vh; width: 60vw; height: 60vw; z-index: -1;
-  background: radial-gradient(circle, var(--glow-2), transparent 60%), radial-gradient(circle at 70% 30%, var(--glow-3), transparent 55%);
-  filter: blur(50px); opacity: .45; pointer-events: none;
-}
-h1, h2, h3, .logo { font-family: Outfit, Inter, sans-serif; }
-a { color: var(--accent); text-decoration: none; }
-a:hover { text-decoration: underline; text-decoration-style: wavy; text-underline-offset: 4px; }
-.wrap { max-width: 900px; margin: 0 auto; padding: 0 16px; }
-.grad { background: linear-gradient(90deg, var(--accent), var(--accent-2)); -webkit-background-clip: text; background-clip: text; color: transparent; }
 
-nav { position: sticky; top: 0; z-index: 10; background: color-mix(in srgb, var(--bg) 80%, transparent); backdrop-filter: blur(12px); border-bottom: 1px solid var(--line); }
-nav .wrap { display: flex; align-items: center; justify-content: space-between; height: 60px; }
-nav .logo { font-weight: 800; font-size: 20px; color: var(--text); }
-nav .logo span { color: var(--accent); }
-nav ul { display: flex; gap: 18px; list-style: none; margin: 0; padding: 0; font-size: 14px; align-items: center; }
-nav ul a { color: var(--muted); font-weight: 500; }
-nav ul a:hover { color: var(--accent); text-decoration: none; }
-#theme { background: var(--chip); border: 0; color: var(--chip-text); border-radius: 999px; width: 34px; height: 34px; cursor: pointer; font-size: 15px; }
-@media (max-width: 600px) { nav ul { gap: 12px; } nav ul li.hide-sm { display: none; } }
+/* timeline */
+.years { margin: 0; display: grid; grid-template-columns: 1fr; }
+@media (min-width: 860px) { .years { grid-template-columns: 200px 1fr; column-gap: 40px; } }
+.years dt { color: var(--accent); padding-top: 18px; }
+.years dd { margin: 0; padding: 14px 0 18px; border-bottom: 1px solid var(--rule); max-width: 640px; }
+@media (min-width: 860px) { .years dt { border-bottom: 1px solid var(--rule); padding-bottom: 18px; } }
+.years dd b { font-weight: 600; }
+.years dt:last-of-type, .years dd:last-of-type { border-bottom: 0; }
 
-header.hero { padding: 84px 0 52px; position: relative; }
-.pill { display: inline-flex; align-items: center; gap: 8px; background: var(--surface); border: 1px solid var(--line); box-shadow: var(--shadow); border-radius: 999px; padding: 6px 14px; font-size: 13px; color: var(--muted); font-weight: 500; }
-.pill .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--accent); box-shadow: 0 0 0 4px var(--accent-soft); animation: pulse 2s infinite; }
-@keyframes pulse { 50% { box-shadow: 0 0 0 7px transparent; } }
-h1 { font-size: clamp(36px, 7vw, 60px); line-height: 1.06; margin: 20px 0 20px; letter-spacing: -0.03em; font-weight: 800; }
-.lede { font-size: 19px; color: var(--muted); max-width: 660px; margin: 0 0 30px; }
-.sparkle { position: absolute; color: var(--accent); font-size: 22px; animation: twinkle 3s ease-in-out infinite; pointer-events: none; }
-.sparkle.s1 { right: 4%; top: 70px; } .sparkle.s2 { right: 16%; top: 150px; font-size: 14px; color: var(--accent-2); animation-delay: 1s; } .sparkle.s3 { right: 7%; top: 230px; font-size: 18px; animation-delay: 2s; }
-@keyframes twinkle { 0%,100% { opacity: .25; transform: scale(.8) rotate(0); } 50% { opacity: 1; transform: scale(1.1) rotate(20deg); } }
-@media (max-width: 600px) { .sparkle { display: none; } }
-@media (prefers-reduced-motion: reduce) { .sparkle, .pill .dot { animation: none; } }
+/* tools */
+.tools { display: grid; grid-template-columns: 1fr; gap: 24px; }
+@media (min-width: 860px) { .tools { grid-template-columns: repeat(3, 1fr); margin-left: 240px; } }
+.tools h3 { margin: 0 0 6px; font-size: 15px; font-weight: 600; }
+.tools p { margin: 0; color: var(--muted); font-size: 16px; }
 
-.links { display: flex; flex-wrap: wrap; gap: 10px; }
-.btn { display: inline-flex; align-items: center; gap: 6px; padding: 10px 18px; border-radius: 999px; border: 1px solid var(--line); background: var(--surface); color: var(--text); font-weight: 600; font-size: 14px; transition: transform .15s, box-shadow .15s; }
-.btn.primary { background: linear-gradient(90deg, var(--accent), var(--accent-2)); border-color: transparent; color: #fff; box-shadow: var(--shadow); }
-button.btn { cursor: pointer; font-family: inherit; }
-.btn:hover { text-decoration: none; transform: translateY(-2px); box-shadow: var(--shadow); }
-#toast { position: fixed; left: 50%; bottom: 24px; transform: translate(-50%, 20px); opacity: 0; transition: .2s; background: linear-gradient(90deg, var(--accent), var(--accent-2)); color: #fff; padding: 10px 18px; border-radius: 999px; font-size: 14px; font-weight: 500; pointer-events: none; max-width: calc(100% - 32px); }
-#toast.show { opacity: 1; transform: translate(-50%, 0); }
-
-.stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
-.stat { background: var(--surface); border: 1px solid var(--line); border-radius: 22px; padding: 20px; box-shadow: var(--shadow); }
-.stat b { display: block; font-family: Outfit, sans-serif; font-size: 32px; font-weight: 800; letter-spacing: -0.02em; }
-.stat span { color: var(--muted); font-size: 13px; }
-@media (max-width: 680px) { .stats { grid-template-columns: repeat(2, 1fr); } }
-
-section { padding: 72px 0 8px; }
-.kicker { font-family: "JetBrains Mono", monospace; font-size: 12px; color: var(--accent); letter-spacing: .08em; text-transform: uppercase; }
-.kicker::before { content: "✦ "; }
-h2 { font-size: 32px; letter-spacing: -0.02em; margin: 6px 0 6px; font-weight: 700; }
-.sub { color: var(--muted); margin: 0 0 28px; max-width: 660px; }
-
-.principles { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
-@media (max-width: 680px) { .principles { grid-template-columns: 1fr; } }
-.principles .card h3 { font-size: 17px; }
-.principles .num { display: inline-grid; place-items: center; width: 34px; height: 34px; border-radius: 12px; background: var(--chip); color: var(--chip-text); font-family: "JetBrains Mono", monospace; font-size: 13px; font-weight: 500; margin-bottom: 10px; }
-
-.featured { display: grid; gap: 14px; }
-.card { background: var(--surface); border: 1px solid var(--line); border-radius: 24px; padding: 24px; box-shadow: var(--shadow); }
-.card.hl { position: relative; border: 1.5px solid transparent; background: linear-gradient(var(--surface), var(--surface)) padding-box, linear-gradient(135deg, var(--accent), var(--accent-2)) border-box; }
-.card.hl::after { content: "✦"; position: absolute; top: 16px; right: 20px; color: var(--accent); opacity: .6; }
-.card h3 { margin: 0 0 6px; font-size: 19px; font-weight: 700; }
-.card p { margin: 0 0 12px; color: var(--muted); }
-.card ul { margin: 0 0 14px; padding-left: 0; list-style: none; color: var(--muted); }
-.card li { margin-bottom: 6px; padding-left: 22px; position: relative; }
-.card li::before { content: "♡"; position: absolute; left: 0; color: var(--accent); font-size: 13px; top: 2px; }
-.card li b { color: var(--text); font-weight: 600; }
-.card .meta { font-family: "JetBrains Mono", monospace; font-size: 12px; color: var(--accent-2); margin-bottom: 6px; font-weight: 500; }
-.impact { font-size: 14px; color: var(--text); background: var(--accent-soft); border-radius: 14px; padding: 10px 14px; margin: 0 0 14px; }
-.impact::before { content: "✨ "; }
-.tags { display: flex; flex-wrap: wrap; gap: 6px; }
-.tag { background: var(--chip); color: var(--chip-text); font-size: 12px; font-weight: 500; padding: 4px 11px; border-radius: 999px; }
-
-.grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; }
-@media (max-width: 680px) { .grid { grid-template-columns: 1fr; } }
-.grid .card { display: flex; flex-direction: column; }
-.grid .card .tags { margin-top: auto; }
-.card .actions { display: flex; gap: 14px; font-size: 14px; font-weight: 600; margin-bottom: 12px; }
-
-.flow { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; margin: 4px 0 16px; font-family: "JetBrains Mono", monospace; font-size: 12px; }
-.flow span { background: var(--surface); border: 1px dashed var(--accent); padding: 4px 10px; border-radius: 999px; color: var(--text); }
-.flow i { font-style: normal; color: var(--accent); }
-
-.timeline { position: relative; margin-left: 10px; border-left: 2px dashed var(--line); }
-.tl { position: relative; padding: 0 0 30px 28px; }
-.tl::before { content: ""; position: absolute; left: -8px; top: 6px; width: 14px; height: 14px; border-radius: 50%; background: var(--bg); border: 2px solid var(--accent-2); }
-.tl.ai::before { background: linear-gradient(135deg, var(--accent), var(--accent-2)); border-color: transparent; box-shadow: 0 0 0 4px var(--accent-soft); }
-.tl .yr { font-family: "JetBrains Mono", monospace; font-size: 13px; color: var(--accent); font-weight: 500; }
-.tl h3 { margin: 2px 0 4px; font-size: 18px; }
-.tl p { margin: 0 0 8px; color: var(--muted); }
-
-.skills { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
-@media (max-width: 680px) { .skills { grid-template-columns: 1fr; } }
-.skills h3 { font-size: 14px; margin: 0 0 12px; text-transform: uppercase; letter-spacing: .08em; color: var(--accent); }
-
-footer { padding: 80px 0 48px; color: var(--muted); font-size: 14px; }
-footer .card { text-align: center; padding: 44px 22px; background: linear-gradient(135deg, var(--accent-soft), var(--surface) 60%); }
-footer h2 { color: var(--text); }
+/* footer */
+footer { padding: 96px 0 40px; }
+footer .big { font-family: "Instrument Serif", serif; font-size: clamp(44px, 9vw, 104px); line-height: 1; margin: 0 0 28px; letter-spacing: -0.02em; }
+footer .big em { color: var(--accent); }
+.email { font-family: "Instrument Serif", serif; font-style: italic; font-size: clamp(24px, 4vw, 36px); background: none; border: 0; padding: 0; color: var(--text); cursor: pointer; text-decoration: underline; text-decoration-color: var(--accent); text-underline-offset: 6px; text-decoration-thickness: 2px; }
+.email:hover { color: var(--accent); }
+.hint { color: var(--faint); margin-left: 10px; }
+.elsewhere { margin-top: 28px; display: flex; gap: 22px; flex-wrap: wrap; }
+.colophon { margin-top: 80px; display: flex; justify-content: space-between; color: var(--faint); flex-wrap: wrap; gap: 8px; }
 </style>
 </head>
 <body>
+<div class="wrap">
 
-<nav>
-  <div class="wrap">
-    <a class="logo" href="#top">ili<span>.</span>rusli</a>
-    <ul>
-      <li><a href="#teams">For teams</a></li>
-      <li><a href="#personal">For me</a></li>
-      <li class="hide-sm"><a href="#engineering">Engineering</a></li>
-      <li class="hide-sm"><a href="#journey">Journey</a></li>
-      <li><button id="theme" aria-label="Toggle colour theme">☾</button></li>
-    </ul>
-  </div>
-</nav>
-
-<div class="wrap" id="top">
-  <header class="hero">
-    <span class="sparkle s1">✦</span><span class="sparkle s2">✦</span><span class="sparkle s3">✧</span>
-    <div class="pill"><span class="dot"></span>Applied AI · Full-stack engineer · Kuala Lumpur</div>
-    <h1>I build <span class="grad">AI workflows</span> that take the busywork off teams and off my own plate</h1>
-    <p class="lede">
-      I'm Ili, a full-stack engineer at Checkbox.ai. I turn the repetitive parts of engineering
-      work, like code review, ticket pickup, briefings and triage, into AI agents that people actually trust and use.
-      Outside work I build small AI tools that make everyday life easier
-    </p>
-    <div class="links">
-      <a class="btn primary" href="#teams">See the AI work ✦</a>
-      <a class="btn" href="https://github.com/IliRusli">GitHub</a>
-      <a class="btn" href="https://www.linkedin.com/in/ilifilzarusli">LinkedIn</a>
-      <button class="btn copy-email" type="button">Email</button>
-    </div>
+  <header class="top">
+    <a class="name" href="#">Ili Rusli</a>
+    <nav>
+      <a href="#teams">For teams</a>
+      <a href="#personal">For me</a>
+      <a href="#product">Product work</a>
+      <a href="#years">Years</a>
+      <button id="theme" type="button">Dark</button>
+    </nav>
   </header>
 
-  <div class="stats">
-    <div class="stat"><b class="grad">6+</b><span>AI agent workflows in daily use</span></div>
-    <div class="stat"><b class="grad">85%</b><span>LLM cost cut per reply on a production bot</span></div>
-    <div class="stat"><b class="grad">377+</b><span>PRs merged at Checkbox.ai</span></div>
-    <div class="stat"><b class="grad">10+</b><span>years shipping web and mobile apps</span></div>
+  <div class="hero">
+    <div>
+      <h1>I teach AI to do the <em>boring bits,</em> so people can do the rest</h1>
+      <div class="intro">
+        <p>I'm a full-stack engineer at Checkbox.ai, where I build legal intake and matter management software for in-house legal teams. I've merged 377+ pull requests there since 2023</p>
+        <p>Lately most of my energy goes into <mark>applied AI</mark>: agents that review my team's code, pick up tickets, brief me in the morning and keep a family trip running smoothly. The interesting part isn't the model, it's making something people actually trust</p>
+      </div>
+    </div>
+    <aside>
+      <dl>
+        <dt>currently</dt><dd>Engineer, Checkbox.ai</dd>
+        <dt>based in</dt><dd>Kuala Lumpur, Malaysia</dd>
+        <dt>building with</dt><dd>Claude, TypeScript, Node, React</dd>
+        <dt>writing code since</dt><dd>2015</dd>
+      </dl>
+    </aside>
   </div>
 
-  <section id="approach">
-    <div class="kicker">My approach</div>
-    <h2>How I apply AI</h2>
-    <p class="sub">The model is the easy part. Making it useful to a real team means designing for trust, cost and the moment a human needs to step in</p>
-    <div class="principles">
-      <div class="card">
-        <div class="num">01</div>
-        <h3>Start from the chore, not the model</h3>
-        <p>I pick work people repeat every week and already find tedious, then automate that exact loop</p>
-      </div>
-      <div class="card">
-        <div class="num">02</div>
-        <h3>Verify before anyone sees it</h3>
-        <p>Agents check their own findings against the source of truth, and a human approves before anything is posted or merged</p>
-      </div>
-      <div class="card">
-        <div class="num">03</div>
-        <h3>Measure the cost</h3>
-        <p>Token counts, caching and hard budgets from day one, so a useful tool stays cheap enough to keep running</p>
-      </div>
-    </div>
-  </section>
-
   <section id="teams">
-    <div class="kicker">AI for teams</div>
-    <h2>Making the whole squad faster</h2>
-    <p class="sub">Agents I built for my nine-dev squad at Checkbox.ai and shared across engineering</p>
-
-    <div class="featured">
-      <div class="card hl">
-        <div class="meta">2026 · Cloud agent</div>
-        <h3>Jira ticket runner</h3>
-        <p>An agent that picks up a team Jira ticket, works out which repositories it touches, and opens one pull request in each, ready for an engineer to review</p>
-        <div class="flow"><span>Jira ticket</span><i>→</i><span>plan</span><i>→</i><span>change per repo</span><i>→</i><span>PRs</span><i>→</i><span>human review</span></div>
-        <p class="impact">Turns small, well-scoped tickets from "someone needs to context switch" into "someone needs to review"</p>
-        <div class="tags"><span class="tag">Claude</span><span class="tag">Cloud agents</span><span class="tag">Jira</span><span class="tag">GitHub</span></div>
-      </div>
-
-      <div class="card hl">
-        <div class="meta">2026 · Multi-agent</div>
-        <h3>PR review fleet</h3>
-        <p>Reviews the whole team's open PR queue in one go: one subagent per pull request, each finding checked against the code before it's reported</p>
-        <ul>
-          <li><b>Fan out:</b> one reviewer agent per open PR, covering correctness, security, tests and UX</li>
-          <li><b>Verify:</b> every finding is proved against the code at HEAD, so false positives never reach the author</li>
-          <li><b>Reconcile:</b> a final pass checks no PR was silently dropped</li>
-          <li><b>Approve:</b> I see one summary table, ranked by which PRs need human eyes, and nothing posts until I sign off</li>
-        </ul>
-        <p class="impact">Keeps review turnaround fast for the squad while I stay on feature work, and teammates get short, inline, verified comments</p>
-        <div class="tags"><span class="tag">Claude Code</span><span class="tag">Subagents</span><span class="tag">GitHub CLI</span><span class="tag">Human in the loop</span></div>
-      </div>
-
-      <div class="grid">
-        <div class="card">
-          <div class="meta">2026 · Shared tooling</div>
-          <h3>Engineering harness skills</h3>
-          <p>Contributed reusable agent skills and plugins to Checkbox's shared engineering harness, so every team gets the same agent workflows instead of each dev rebuilding them</p>
-          <div class="tags"><span class="tag">Claude Code plugins</span><span class="tag">Skills</span><span class="tag">Platform</span></div>
-        </div>
-        <div class="card">
-          <div class="meta">2026 · Team knowledge</div>
-          <h3>Weekly tech and legal-tech roundup</h3>
-          <p>An agent that searches recent news across tech, AI, legal tech and competitors, and drafts a short digest for the team each Monday</p>
-          <div class="tags"><span class="tag">Web search</span><span class="tag">Summarisation</span></div>
-        </div>
-        <div class="card">
-          <div class="meta">2026 · Reliability</div>
-          <h3>AI-assisted incident triage</h3>
-          <p>Used agents wired into Datadog and Kubernetes to trace a Sev1 crash loop to memory pressure, then wrote an RCA both engineers and Customer Success could follow</p>
-          <div class="tags"><span class="tag">Datadog MCP</span><span class="tag">Kubernetes</span><span class="tag">RCA</span></div>
-        </div>
-        <div class="card">
-          <div class="meta">2026 · Customer insight</div>
-          <h3>Turning feedback into a backlog</h3>
-          <p>Used AI to process weekly customer call insights nobody had time to read, grouping them by feasibility into work the squad could pick up</p>
-          <div class="tags"><span class="tag">NotebookLM</span><span class="tag">Product thinking</span></div>
-        </div>
+    <div class="sec-head">
+      <div class="num mono">01</div>
+      <div>
+        <h2>AI for <em>teams</em></h2>
+        <p>Tools I built for my nine-person squad at Checkbox, and later shared with the rest of engineering</p>
       </div>
     </div>
+
+    <article class="row">
+      <div class="when mono">2026<span>cloud agent</span></div>
+      <div>
+        <h3>The Jira ticket runner</h3>
+        <p>Give it a team ticket and it works out which repositories the change touches, makes the change and opens one pull request in each. An engineer still reviews and merges</p>
+        <p class="result">Small, well-scoped tickets stop being a context switch and become a review</p>
+        <div class="stack mono">Claude · cloud agents · Jira · GitHub</div>
+      </div>
+    </article>
+
+    <article class="row">
+      <div class="when mono">2026<span>multi-agent</span></div>
+      <div>
+        <h3>A review fleet for the whole PR queue</h3>
+        <p>I review code for nine engineers. Rather than skim, I built a fleet that reads every open pull request properly and then waits for me</p>
+        <ol>
+          <li>One reviewer agent per open PR, covering correctness, security, tests and UX</li>
+          <li>Every finding is proved against the actual code before I see it, so authors never get a false alarm</li>
+          <li>A final pass makes sure no PR was quietly skipped</li>
+          <li>I get one summary, ranked by which PRs need human eyes, and nothing is posted until I say so</li>
+        </ol>
+        <p class="result">Faster reviews for the team, shorter comments for authors, and my afternoons back for feature work</p>
+        <div class="stack mono">Claude Code · subagents · GitHub CLI</div>
+      </div>
+    </article>
+
+    <article class="row">
+      <div class="when mono">2026<span>shared tooling</span></div>
+      <div>
+        <h3>Skills for the engineering harness</h3>
+        <p>Packaged my agent workflows as plugins in Checkbox's shared engineering harness, so other teams can switch them on instead of rebuilding them</p>
+        <div class="stack mono">Claude Code plugins · skills</div>
+      </div>
+    </article>
+
+    <article class="row">
+      <div class="when mono">2026<span>reliability</span></div>
+      <div>
+        <h3>Incident triage with an extra pair of hands</h3>
+        <p>During a Sev1, I used agents connected to Datadog and Kubernetes to trace a crash-looping service back to memory pressure. Then I wrote the root cause analysis so that engineers and Customer Success could both follow it</p>
+        <div class="stack mono">Datadog MCP · Kubernetes</div>
+      </div>
+    </article>
+
+    <article class="row">
+      <div class="when mono">2026<span>team habits</span></div>
+      <div>
+        <h3>Reading what nobody had time to read</h3>
+        <p>Customer call insights were landing in our channel every week with zero replies. I used AI to sort them by what our squad could realistically fix, which turned a feed into a backlog. I also run a Monday tech and legal-tech news digest for the team</p>
+        <div class="stack mono">NotebookLM · web search</div>
+      </div>
+    </article>
   </section>
 
   <section id="personal">
-    <div class="kicker">AI for everyday life</div>
-    <h2>Little helpers I built for me</h2>
-    <p class="sub">Personal tools where I get to experiment fast and learn what holds up</p>
-
-    <div class="featured">
-      <div class="card hl">
-        <div class="meta">2026 · Personal agent</div>
-        <h3>Lily, my AI executive assistant</h3>
-        <p>
-          A "second brain" built on Claude Code and connected through MCP to Jira, GitHub, Datadog, PagerDuty,
-          Microsoft Teams, Outlook and Notion. It handles the admin around engineering so I can focus on building
-        </p>
-        <ul>
-          <li><b>Morning briefing:</b> reads my calendar and unreplied messages, suggests what to focus on, and texts it to me</li>
-          <li><b>Memory and decision log:</b> learns my preferences and corrections over time, versioned in git so I can review what it knows</li>
-          <li><b>Skills:</b> any request I repeat becomes a reusable workflow</li>
-        </ul>
-        <div class="tags"><span class="tag">Claude Code</span><span class="tag">MCP</span><span class="tag">Memory</span><span class="tag">Automation</span></div>
-      </div>
-
-      <div class="grid">
-        <div class="card">
-          <div class="meta">2026 · Telegram bot</div>
-          <h3>Tony, the family trip assistant</h3>
-          <p>A Telegram bot on Cloudflare Workers that answered my family's questions during a trip to Japan, with live web lookups</p>
-          <ul>
-            <li>Cut cost per reply from <b>$0.04 to about $0.006</b> with prompt caching and a lazy-loaded search tool</li>
-            <li>Fixed intermittent API errors by pinning where the Worker runs</li>
-            <li>Daily budget caps so it can never run up a bill</li>
-          </ul>
-          <div class="tags"><span class="tag">Claude API</span><span class="tag">Cloudflare Workers</span><span class="tag">Telegram</span><span class="tag">Cost tuning</span></div>
-        </div>
-        <div class="card">
-          <div class="meta">2023 · Early LLM work</div>
-          <h3>Davinci chatbot</h3>
-          <p>My first LLM app, a conversational chatbot on the OpenAI API, built before most tooling existed. Where the AI journey started</p>
-          <div class="actions"><a href="https://github.com/IliRusli/davinci-chatbot">Code →</a></div>
-          <div class="tags"><span class="tag">OpenAI API</span><span class="tag">JavaScript</span></div>
-        </div>
+    <div class="sec-head">
+      <div class="num mono">02</div>
+      <div>
+        <h2>AI for <em>me</em></h2>
+        <p>Where I experiment fast and find out what holds up</p>
       </div>
     </div>
+
+    <article class="row">
+      <div class="when mono">2026<span>personal agent</span></div>
+      <div>
+        <h3>Lily, my executive assistant</h3>
+        <p>A second brain built on Claude Code, plugged into Jira, GitHub, Datadog, PagerDuty, Teams, Outlook and Notion. Each morning it texts me a briefing with my calendar, the messages I haven't replied to and what to focus on</p>
+        <p>It keeps a memory and a decision log in git, so I can read exactly what it has learned about how I work and correct it. Anything I ask for twice becomes a reusable skill</p>
+        <div class="stack mono">Claude Code · MCP · git-versioned memory</div>
+      </div>
+    </article>
+
+    <article class="row">
+      <div class="when mono">2026<span>telegram bot</span></div>
+      <div>
+        <h3>Tony, the family trip bot</h3>
+        <p>A Telegram bot on Cloudflare Workers that answered my family's questions during a trip to Japan, with live web lookups</p>
+        <p class="result">Cost per reply went from $0.04 to about $0.006 once I measured where the tokens went</p>
+        <p>The search tool definition was the biggest cost, so it's now loaded only when needed. Prompt caching covers the fixed prefix, and a daily budget cap means it can never run up a bill</p>
+        <div class="stack mono">Claude API · Cloudflare Workers · Telegram</div>
+      </div>
+    </article>
+
+    <article class="row">
+      <div class="when mono">2023<span>first LLM app</span></div>
+      <div>
+        <h3>Davinci chatbot</h3>
+        <p>My first go at building on a language model, back when it meant hand-rolling everything</p>
+        <div class="stack mono">OpenAI API · JavaScript</div>
+        <div class="links-inline"><a href="https://github.com/IliRusli/davinci-chatbot">Source</a></div>
+      </div>
+    </article>
   </section>
 
-  <section id="engineering">
-    <div class="kicker">The engineering underneath</div>
-    <h2>Product work at Checkbox.ai</h2>
-    <p class="sub">The Legal Eagles squad (Intake &amp; Matter Management) · 2023 to now</p>
-    <div class="featured">
-      <div class="card">
-        <div class="meta">Product</div>
-        <h3>Legal intake and matter management</h3>
-        <p>
-          Checkbox builds AI and no-code tools for in-house legal teams. My squad owns where legal requests
-          arrive and get worked: intake from email, Slack, Ironclad and web forms, customisable intake forms,
-          triage, matter storage and reporting dashboards
-        </p>
-        <div class="tags"><span class="tag">React</span><span class="tag">Node.js</span><span class="tag">PostgreSQL</span><span class="tag">AWS / EKS</span><span class="tag">BullMQ + Redis</span></div>
-      </div>
-      <div class="grid">
-        <div class="card">
-          <div class="meta">Feature</div>
-          <h3>Unified message system</h3>
-          <p>One conversation thread per matter, pulling email and Slack replies into a single view so legal teams stop hunting for context</p>
-          <div class="tags"><span class="tag">Messaging</span><span class="tag">Slack</span><span class="tag">Email</span></div>
-        </div>
-        <div class="card">
-          <div class="meta">Feature</div>
-          <h3>Global Search ingestion</h3>
-          <p>An outbox-based ingestion pipeline that feeds matters, messages and notes into cross-product search</p>
-          <div class="tags"><span class="tag">Outbox pattern</span><span class="tag">Search</span><span class="tag">Event-driven</span></div>
-        </div>
+  <section id="how">
+    <div class="sec-head">
+      <div class="num mono">03</div>
+      <div>
+        <h2>How I <em>approach</em> it</h2>
       </div>
     </div>
-
-    <h3 style="margin:40px 0 14px;font-size:20px">Earlier side projects</h3>
-    <div class="grid">
-      <div class="card">
-        <div class="meta">2021 · Full stack</div>
-        <h3>Slick's Slices</h3>
-        <p>A pizza shop on Gatsby with a Sanity CMS so the owner can edit the menu and staff</p>
-        <div class="actions"><a href="https://vigilant-mcclintock-66f75f.netlify.app/">Live demo →</a><a href="https://github.com/IliRusli/master-gatsby">Code →</a></div>
-        <div class="tags"><span class="tag">Gatsby</span><span class="tag">Sanity</span><span class="tag">GraphQL</span></div>
-      </div>
-      <div class="card">
-        <div class="meta">2021 · Web3</div>
-        <h3>Wave Portal</h3>
-        <p>An on-chain message board with a Solidity contract, random prize payouts and anti-spam cooldowns</p>
-        <div class="actions"><a href="https://github.com/IliRusli/web3-solidity">Code →</a></div>
-        <div class="tags"><span class="tag">Solidity</span><span class="tag">Hardhat</span><span class="tag">React</span></div>
-      </div>
-      <div class="card">
-        <div class="meta">2021 · Mobile</div>
-        <h3>React Native chat app</h3>
-        <p>Sends and receives text, images and PDFs, with Redux state</p>
-        <div class="actions"><a href="https://github.com/IliRusli/react-native-chat-app">Code →</a></div>
-        <div class="tags"><span class="tag">React Native</span><span class="tag">Redux</span></div>
-      </div>
-      <div class="card">
-        <div class="meta">2020 · Mobile</div>
-        <h3>Dynamic form generator</h3>
-        <p>Renders React Native forms from a JSON schema, an early take on the configurable intake forms I work on today</p>
-        <div class="actions"><a href="https://github.com/IliRusli/react-native-dynamic-form-generator-poc">Code →</a></div>
-        <div class="tags"><span class="tag">React Native</span><span class="tag">TypeScript</span></div>
-      </div>
-    </div>
+    <ol class="principles">
+      <li><div><b>Start from the chore, not the model.</b> I pick something people already do every week and already find tedious, then automate that exact loop</div></li>
+      <li><div><b>Verify before anyone sees it.</b> Agents check their own work against the source of truth, and a person approves before anything goes out</div></li>
+      <li><div><b>Know what it costs.</b> Token counts, caching and hard budgets from day one, so a useful tool stays cheap enough to keep running</div></li>
+    </ol>
   </section>
 
-  <section id="journey">
-    <div class="kicker">Journey</div>
-    <h2>From mobile apps to agents</h2>
-    <p class="sub">A decade of building, one chapter at a time</p>
-    <div class="timeline">
-      <div class="tl ai">
-        <div class="yr">2026</div>
-        <h3>Orchestrating AI agents</h3>
-        <p>Built Lily, the PR review fleet and the Jira ticket runner, contributed skills to the company engineering harness, and shipped a cost-tuned Claude bot on Cloudflare Workers</p>
-      </div>
-      <div class="tl">
-        <div class="yr">2025</div>
-        <h3>Shipping at scale</h3>
-        <p>171 PRs merged in one year on the matter management platform, including the unified message system and Slack integration</p>
-      </div>
-      <div class="tl">
-        <div class="yr">2024</div>
-        <h3>Deeper into the platform</h3>
-        <p>Took on more of the matter management platform as the codebase moved from Bitbucket to GitHub, and tinkered with WebAR on the side</p>
-      </div>
-      <div class="tl ai">
-        <div class="yr">2023</div>
-        <h3>Joined Checkbox.ai and met LLMs</h3>
-        <p>Moved into legal tech, an industry being reshaped by AI. Built my first LLM chatbot on the OpenAI API</p>
-      </div>
-      <div class="tl">
-        <div class="yr">2021 to 2022</div>
-        <h3>Going full stack</h3>
-        <p>Gatsby + Sanity storefront, an interactive map app, a Solidity dApp and a React + Express task manager</p>
-      </div>
-      <div class="tl">
-        <div class="yr">2017 to 2020</div>
-        <h3>Mobile engineering</h3>
-        <p>React Native apps, home-screen widgets, native Android in Kotlin, a production IoT controller app for a client, plus Laravel and Magento back ends</p>
-      </div>
-      <div class="tl">
-        <div class="yr">2015</div>
-        <h3>Hello, world</h3>
-        <p>Joined GitHub, built a project at OSU Hackathon 2015 and shipped my first personal web page</p>
+  <section id="product">
+    <div class="sec-head">
+      <div class="num mono">04</div>
+      <div>
+        <h2>The <em>product</em> work underneath</h2>
+        <p>Checkbox.ai builds AI and no-code tools for in-house legal teams. My squad, The Legal Eagles, owns intake and matter management: where legal requests arrive from email, Slack, Ironclad and forms, and get triaged, worked and reported on</p>
       </div>
     </div>
+
+    <article class="row">
+      <div class="when mono">2025<span>feature</span></div>
+      <div>
+        <h3>Unified message system</h3>
+        <p>One conversation thread per matter, pulling email and Slack replies into a single view so lawyers stop hunting for context across tools</p>
+        <div class="stack mono">React · Node.js · PostgreSQL · Slack</div>
+      </div>
+    </article>
+
+    <article class="row">
+      <div class="when mono">2026<span>feature</span></div>
+      <div>
+        <h3>Global Search ingestion</h3>
+        <p>An outbox-based pipeline that feeds matters, messages and notes into search across the product</p>
+        <div class="stack mono">Node.js · PostgreSQL · BullMQ · Redis</div>
+      </div>
+    </article>
+
+    <h3 class="mono" style="margin:56px 0 12px;color:var(--muted);font-weight:400">Earlier side projects</h3>
+    <table class="index">
+      <tr><td class="y mono">2021</td><td class="n"><a href="https://vigilant-mcclintock-66f75f.netlify.app/">Slick's Slices</a></td><td class="d">Pizza shop on Gatsby and Sanity, editable by the owner</td></tr>
+      <tr><td class="y mono">2021</td><td class="n"><a href="https://github.com/IliRusli/web3-solidity">Wave Portal</a></td><td class="d">On-chain message board in Solidity with random prize payouts</td></tr>
+      <tr><td class="y mono">2021</td><td class="n"><a href="https://github.com/IliRusli/react-native-chat-app">Chat app</a></td><td class="d">React Native and Redux, sends text, images and PDFs</td></tr>
+      <tr><td class="y mono">2022</td><td class="n"><a href="https://github.com/IliRusli/task-manager">Task manager</a></td><td class="d">React front end with an Express API</td></tr>
+      <tr><td class="y mono">2020</td><td class="n"><a href="https://github.com/IliRusli/react-native-dynamic-form-generator-poc">Form generator</a></td><td class="d">Mobile forms from a JSON schema, a precursor to the intake forms I build now</td></tr>
+      <tr><td class="y mono">2024</td><td class="n"><a href="https://github.com/IliRusli/simple_ar_menu_viewer">AR menu viewer</a></td><td class="d">Previewing menu items in augmented reality from the browser</td></tr>
+    </table>
   </section>
 
-  <section id="skills">
-    <div class="kicker">Toolbox</div>
-    <h2>What I reach for most</h2>
-    <div class="skills">
-      <div class="card">
-        <h3>Applied AI</h3>
-        <div class="tags"><span class="tag">Claude API</span><span class="tag">Claude Code</span><span class="tag">MCP</span><span class="tag">Multi-agent orchestration</span><span class="tag">Prompt caching</span><span class="tag">Tool use</span><span class="tag">Evals by verification</span></div>
+  <section id="years">
+    <div class="sec-head">
+      <div class="num mono">05</div>
+      <div>
+        <h2>The <em>years</em></h2>
       </div>
-      <div class="card">
-        <h3>Full stack</h3>
-        <div class="tags"><span class="tag">TypeScript</span><span class="tag">React</span><span class="tag">React Native</span><span class="tag">Node.js</span><span class="tag">PostgreSQL</span><span class="tag">Redis</span></div>
-      </div>
-      <div class="card">
-        <h3>Platform</h3>
-        <div class="tags"><span class="tag">AWS</span><span class="tag">Kubernetes</span><span class="tag">Cloudflare Workers</span><span class="tag">GitHub Actions</span><span class="tag">Datadog</span></div>
-      </div>
+    </div>
+    <dl class="years">
+      <dt class="mono">2026</dt><dd><b>Agents everywhere.</b> Lily, the review fleet, the ticket runner, harness skills and Tony</dd>
+      <dt class="mono">2025</dt><dd><b>Shipping at scale.</b> 171 PRs merged in a year, including the unified message system and Slack integration</dd>
+      <dt class="mono">2024</dt><dd><b>Deeper into the platform</b> as the codebase moved from Bitbucket to GitHub. WebAR on the side</dd>
+      <dt class="mono">2023</dt><dd><b>Joined Checkbox.ai</b> and moved into legal tech. Built my first LLM chatbot</dd>
+      <dt class="mono">2021 to 2022</dt><dd><b>Going full stack.</b> Gatsby and Sanity, an interactive map app, a Solidity dApp and an Express API</dd>
+      <dt class="mono">2017 to 2020</dt><dd><b>Mobile years.</b> React Native apps and home-screen widgets, native Android in Kotlin, an IoT controller app for a client, plus Laravel and Magento</dd>
+      <dt class="mono">2015</dt><dd><b>Hello, world.</b> Joined GitHub, built a project at OSU Hackathon and made my first web page</dd>
+    </dl>
+  </section>
+
+  <section id="tools" style="border-bottom:0">
+    <div class="sec-head">
+      <div class="num mono">06</div>
+      <div><h2>What I <em>reach for</em></h2></div>
+    </div>
+    <div class="tools">
+      <div><h3>Applied AI</h3><p>Claude API, Claude Code, MCP, multi-agent orchestration, prompt caching, tool use</p></div>
+      <div><h3>Full stack</h3><p>TypeScript, React, React Native, Node.js, PostgreSQL, Redis</p></div>
+      <div><h3>Platform</h3><p>AWS, Kubernetes, Cloudflare Workers, GitHub Actions, Datadog</p></div>
     </div>
   </section>
 
   <footer>
-    <div class="card">
-      <h2>Let's build something <span class="grad">smart</span> ✦</h2>
-      <p>Happy to chat about putting AI agents to work for real teams, legal tech or developer productivity</p>
-      <div class="links" style="justify-content:center">
-        <button class="btn primary copy-email" type="button">Say hello ♡</button>
-        <a class="btn" href="https://www.linkedin.com/in/ilifilzarusli">LinkedIn</a>
-        <a class="btn" href="https://github.com/IliRusli">GitHub</a>
-      </div>
-      <p style="margin:18px 0 0;font-family:'JetBrains Mono',monospace;font-size:14px"><a href="mailto:ilifilzarusli@gmail.com">ilifilzarusli@gmail.com</a></p>
+    <p class="big">Say <em>hello</em></p>
+    <button class="email" type="button" id="email">ilifilzarusli@gmail.com</button><span class="hint mono" id="hint">click to copy</span>
+    <div class="elsewhere">
+      <a href="https://github.com/IliRusli">GitHub</a>
+      <a href="https://www.linkedin.com/in/ilifilzarusli">LinkedIn</a>
+      <a href="mailto:ilifilzarusli@gmail.com">Open in mail app</a>
     </div>
-    <p style="text-align:center;margin-top:28px">Made with ♡ and a few agents · © <span id="y"></span> Ili Rusli</p>
+    <div class="colophon mono"><span>© <span id="y"></span> Ili Rusli</span><span>Kuala Lumpur</span></div>
   </footer>
-</div>
 
-<div id="toast" role="status" aria-live="polite"></div>
+</div>
 <script>
-  const EMAIL = 'ilifilzarusli@gmail.com', toast = document.getElementById('toast');
-  function showToast(msg) { toast.textContent = msg; toast.classList.add('show'); clearTimeout(showToast.t); showToast.t = setTimeout(() => toast.classList.remove('show'), 2600); }
-  document.querySelectorAll('.copy-email').forEach(b => b.addEventListener('click', async () => {
-    try { await navigator.clipboard.writeText(EMAIL); showToast('Copied ' + EMAIL + ' ♡'); }
-    catch (e) { showToast(EMAIL); }
-  }));
   document.getElementById('y').textContent = new Date().getFullYear();
+  const email = document.getElementById('email'), hint = document.getElementById('hint');
+  email.addEventListener('click', async () => {
+    try { await navigator.clipboard.writeText(email.textContent); hint.textContent = 'copied'; }
+    catch (e) { hint.textContent = 'select and copy'; }
+    setTimeout(() => { hint.textContent = 'click to copy'; }, 2400);
+  });
   const root = document.documentElement, btn = document.getElementById('theme');
   const isDark = () => root.dataset.theme ? root.dataset.theme === 'dark' : matchMedia('(prefers-color-scheme: dark)').matches;
-  const syncIcon = () => { btn.textContent = isDark() ? '☀' : '☾'; };
+  const sync = () => { btn.textContent = isDark() ? 'Light' : 'Dark'; };
   try { const t = localStorage.getItem('theme'); if (t) root.dataset.theme = t; } catch (e) {}
-  syncIcon();
+  sync();
   btn.addEventListener('click', () => {
-    root.dataset.theme = isDark() ? 'light' : 'dark'; syncIcon();
+    root.dataset.theme = isDark() ? 'light' : 'dark'; sync();
     try { localStorage.setItem('theme', root.dataset.theme); } catch (e) {}
   });
 </script>
