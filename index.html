@@ -262,6 +262,18 @@ footer .big em { color: var(--accent); }
     </article>
 
     <article class="row">
+      <div class="when mono">2026<span>puzzle game</span></div>
+      <div>
+        <h3>Loopy, a number loop puzzle</h3>
+        <p>I love solving puzzles, so I built one. It's the dots-and-numbers loop puzzle from <i>The Devil's Plan</i> (also known as Slitherlink): draw one closed loop so every number matches how many of its sides are used</p>
+        <p class="result">Every puzzle is generated fresh and checked by a solver to have exactly one answer, in under half a second</p>
+        <p>The generator grows a random shape, turns its outline into the loop, then removes clues one at a time for as long as the solver still finds a single solution. Easy, medium and hard levels, a hints toggle, pause and best times. Built with Claude Code and deployed by a GitHub Action that runs the uniqueness test before every release</p>
+        <div class="stack mono">JavaScript · Web Workers · Cloudflare Workers · GitHub Actions</div>
+        <div class="links-inline"><a href="https://loopy.lilyworks.workers.dev/">Play it</a></div>
+      </div>
+    </article>
+
+    <article class="row">
       <div class="when mono">2023<span>first LLM app</span></div>
       <div>
         <h3>Davinci chatbot</h3>
