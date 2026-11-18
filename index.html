@@ -42,10 +42,14 @@ mark { background: linear-gradient(104deg, transparent .5%, var(--mark) 2%, var(
 /* top bar */
 .top { display: flex; justify-content: space-between; align-items: baseline; padding: 28px 0; border-bottom: 1px solid var(--rule); gap: 16px; flex-wrap: wrap; }
 .top .name { font-family: Fraunces, serif; font-weight: 600; font-size: 22px; text-decoration: none; }
-.top nav { display: flex; gap: 22px; flex-wrap: wrap; }
+.top nav { display: flex; gap: 22px; flex-wrap: wrap; align-items: center; }
 .top nav a { text-decoration: none; color: var(--muted); font-size: 16px; font-weight: 500; }
 .top nav a:hover { color: var(--accent); }
-#theme { background: none; border: 0; color: var(--muted); cursor: pointer; font: inherit; font-size: 15px; padding: 0; }
+#theme { background: none; border: 0; color: var(--muted); cursor: pointer; padding: 4px; display: inline-grid; place-items: center; align-self: center; border-radius: 50%; }
+#theme svg { display: block; }
+#theme .sun { display: none; }
+#theme.is-dark .moon { display: none; }
+#theme.is-dark .sun { display: block; }
 #theme:hover { color: var(--accent); }
 
 /* hero */
@@ -139,7 +143,10 @@ footer .big em { color: var(--accent); }
       <a href="#personal">For me</a>
       <a href="#product">Product work</a>
       <a href="#years">Years</a>
-      <button id="theme" type="button">Dark</button>
+      <button id="theme" type="button" aria-label="Switch to dark mode">
+        <svg class="moon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+        <svg class="sun" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4.2"/><path d="M12 2v2.2M12 19.8V22M4.2 4.2l1.6 1.6M18.2 18.2l1.6 1.6M2 12h2.2M19.8 12H22M4.2 19.8l1.6-1.6M18.2 5.8l1.6-1.6"/></svg>
+      </button>
     </nav>
   </header>
 
@@ -369,7 +376,8 @@ footer .big em { color: var(--accent); }
   });
   const root = document.documentElement, btn = document.getElementById('theme');
   const isDark = () => root.dataset.theme ? root.dataset.theme === 'dark' : matchMedia('(prefers-color-scheme: dark)').matches;
-  const sync = () => { btn.textContent = isDark() ? 'Light' : 'Dark'; };
+  const sync = () => { const d = isDark(); btn.classList.toggle('is-dark', d); btn.setAttribute('aria-label', d ? 'Switch to light mode' : 'Switch to dark mode'); btn.title = d ? 'Light mode' : 'Dark mode'; };
+  matchMedia('(prefers-color-scheme: dark)').addEventListener('change', sync);
   try { const t = localStorage.getItem('theme'); if (t) root.dataset.theme = t; } catch (e) {}
   sync();
   btn.addEventListener('click', () => {
